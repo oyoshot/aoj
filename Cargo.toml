@@ -1,0 +1,14 @@
+[workspace]
+members = ["verification/"]
+
+[package]
+name = "aoj"
+version = "0.0.0"
+edition = "2018"
+publish = false
+
+[lib]
+name = "crate" # This crate itself is not intended to be used directly.
+
+[dependencies]
+input = { path = "crates/io/input" }

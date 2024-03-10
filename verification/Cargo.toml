@@ -1,0 +1,8 @@
+[package]
+name = "verification"
+version = "0.0.0"
+edition = "2018"
+publish = false
+
+[dependencies]
+input = { path = "../crates/io/input" }
