@@ -1,4 +1,4 @@
-// verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_D
+// verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_A
 
 /// https://qiita.com/tanakh/items/0ba42c7ca36cd29d0ac8
 macro_rules! input {
@@ -50,17 +50,26 @@ macro_rules! read_value {
     };
 }
 
-use std::i64;
-
 fn main() {
-    input! {n: usize, r: [i64; n]};
+    input! {n: usize,  a: [usize; n]};
 
-    let mut maxr = i64::MIN;
-    let mut minr = r[0];
-    for i in 1..r.len() {
-        maxr = maxr.max(r[i] - minr);
-        minr = minr.min(r[i]);
+    let mut a = a;
+    let f = |a: &Vec<usize>| {
+        a.iter()
+            .map(|v| v.to_string())
+            .collect::<Vec<String>>()
+            .join(" ")
+    };
+
+    println!("{}", f(&a));
+    for i in 1..n {
+        let v = a[i];
+        let mut j = i;
+        while j > 0 && a[j - 1] > v {
+            a[j] = a[j - 1];
+            j = j.saturating_sub(1);
+        }
+        a[j] = v;
+        println!("{}", f(&a));
     }
-
-    println!("{maxr}");
 }
